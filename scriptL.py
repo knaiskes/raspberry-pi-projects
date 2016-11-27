@@ -10,15 +10,27 @@ from random import randint
 #a differet raspberry pi version 
 ledList = [LED(4),LED(17),LED(18),LED(27),LED(22),LED(23),LED(24),LED(25)]
 
+def testLeds(leds):
+	for i in leds:
+		i.on()
+	sleep(5)
+	for i in leds:
+		i.off()
+
 def allOnandOff(leds):
-	#Turn on and off every led after 2 seconds
+	#turn on and off every led after 2 seconds
+	#from start to end and back
 	while True:
 		for i in leds:
 			i.on()
 			sleep(2)
 			i.off()
+		for i in reversed(leds):
+			i.on()
+			sleep(2)
+			i.off()
 def randomOnOff(leds):
-	#Turn on and off random leds
+	#Turn on and off random leds from the list
 	while True:
 		random_led = randint(0,7)
 		randomLed = ledList[random_led]
@@ -26,9 +38,14 @@ def randomOnOff(leds):
 		sleep(2)
 		randomLed.off()
 
+
+
+
+
+
 #uncomment the function that you want to use, make sure all others funtions be
 #commented out
 
+#testLeds(ledList)
 #allOnandOff(ledList)
-randomOnOff(ledList)
-
+#randomOnOff(ledList)
