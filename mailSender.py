@@ -4,7 +4,7 @@ from email.mime.multipart import MIMEMultipart
 from keys import * # I keep my personal information in a separate file
 
 def sendNewMail():
-	#define your personal information or in a separate file as I did
+	#define your personal information below or in a separate file as I did
 	#user_email =""
 	#passw = ""
 	#sendTo = ""
