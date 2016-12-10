@@ -1,7 +1,10 @@
 from gpiozero import MotionSensor
 
-def runSensor(pinNum):
+def runSensor():
+	pinNum = 10
 	sensor = MotionSensor(pinNum)
 	while True:
 		if pir.motion_detected:
-			# add later
+			return True
+		else:
+			return False

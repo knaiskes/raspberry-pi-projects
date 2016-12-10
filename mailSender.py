@@ -2,13 +2,16 @@ import smtplib
 from email.mime.image import MIMEImage
 from email.mime.multipart import MIMEMultipart
 from keys import * # I keep my personal information in a separate file
+from datetime import datetime 
 
 def sendNewMail():
 	#define your personal information below or in a separate file as I did
 	#user_email =""
 	#passw = ""
 	#sendTo = ""
-	sub = "New alarm"
+	currentTime = datetime.now().time()
+	currentTime = currentTime.replace(microsecond = 0)
+	sub = "New alarm"+",at:"+""+str(currentTime)
 	image = "icon.png"
 	message = MIMEMultipart()
 	message["Subject"] = sub
