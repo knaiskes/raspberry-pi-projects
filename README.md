@@ -9,3 +9,5 @@
 -  A PIR motion sensor
 
 - A camera 
+
+Also install fswebcam
