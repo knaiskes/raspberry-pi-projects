@@ -10,4 +10,6 @@
 
 - A camera 
 
-Also install fswebcam
+## Additional software you may need
+
+-fswebcam
