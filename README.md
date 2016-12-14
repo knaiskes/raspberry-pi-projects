@@ -10,6 +10,6 @@
 
 - A camera 
 
-## Additional software you may need
+## Additional software you will need if you use a usb web camera 
 
 -fswebcam
