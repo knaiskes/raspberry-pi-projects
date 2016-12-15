@@ -4,7 +4,7 @@
 
 -  A breadboard (optional)
 
-- 6 jumper wires ( 3 if you don't use a breadboard)
+- 6 jumper wires  female to male ( 3 if you don't use a breadboard)
 
 -  A PIR motion sensor
 
