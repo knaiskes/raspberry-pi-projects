@@ -1,3 +1,4 @@
+#Not ready yet
 ## What will you need
 
 - A raspberry pi
