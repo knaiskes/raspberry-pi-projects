@@ -12,7 +12,7 @@ def sendNewMail():
 	currentTime = datetime.now().time()
 	currentTime = currentTime.replace(microsecond = 0)
 	sub = "New alarm"+",at:"+""+str(currentTime)
-	image = "icon.png"
+	image = "image.jpg"
 	message = MIMEMultipart()
 	message["Subject"] = sub
 	message["From"] = user_email
