@@ -11,7 +11,7 @@ def sendNewMail():
 	#sendTo = ""
 	currentTime = datetime.now().time()
 	currentTime = currentTime.replace(microsecond = 0)
-	sub = "New alarm"+",at:"+""+str(currentTime)
+	sub = "New alarm"+"at:"+""+str(currentTime)
 	image = "image.jpg"
 	message = MIMEMultipart()
 	message["Subject"] = sub
