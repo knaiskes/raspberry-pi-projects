@@ -1,51 +1,58 @@
-from gpiozero import LED
+#!/usr/bin/env python
+
 from time import sleep
+from sys import exit
 from random import randint
+import RPi.GPIO as GPIO
 
-#funtions are tested on raspberry pi b
+GPIO.setmode(GPIO.BCM)
+GPIO.setwarnings(False)
 
-#There are connected leds to all gpio pins that are available
+# script has been tested on raspberry pi b
+# there are leds connected to all  available gpio pins 
+# global led list, you may want to change it or expand it if you are using
+# a differet raspberry pi version 
 
-#global led list, you may want to change it or expand it if you are using
-#a differet raspberry pi version 
-ledList = [LED(4),LED(17),LED(18),LED(27),LED(22),LED(23),LED(24),LED(25)]
+ledList = [4,17,18,27,22,23,24,25]
+for i in ledList:
+	GPIO.setup(i,GPIO.OUT)
 
 def testLeds(leds):
 	for i in leds:
-		i.on()
+		GPIO.output(i,GPIO.HIGH)
 	sleep(5)
 	for i in leds:
-		i.off()
+		GPIO.output(i,GPIO.LOW)
 
 def allOnandOff(leds):
-	#turn on and off every led after 2 seconds
-	#from start to end and back
+	# turn on and off every led after 1 seconds
+	# from start to end and back
 	while True:
-		for i in leds:
-			i.on()
+		for i in leds: 
+			GPIO.output(i,GPIO.HIGH)
 			sleep(2)
-			i.off()
+			GPIO.output(i,GPIO.LOW)
 		for i in reversed(leds):
-			i.on()
+			GPIO.output(i,GPIO.HIGH)
 			sleep(2)
-			i.off()
+			GPIO.output(i,GPIO.LOW)
 def randomOnOff(leds):
-	#Turn on and off random leds from the list
+	# Turn on and off random leds from the list
 	while True:
 		random_led = randint(0,7)
 		randomLed = ledList[random_led]
-		randomLed.on()
+		GPIO.output(randomLed,GPIO.HIGH)
 		sleep(2)
-		randomLed.off()
+		GPIO.output(randomLed,GPIO.LOW)
 
+def allOff(leds):
+	for i in leds:
+		GPIO.output(i,GPIO.LOW)
 
-
-
-
-
-#uncomment the function that you want to use, make sure all others funtions be
-#commented out
-
-#testLeds(ledList)
-#allOnandOff(ledList)
-#randomOnOff(ledList)
+try:
+	testLeds(ledList)
+	# allOnandOff(ledList)
+	# randomOnOff(ledList)
+except KeyboardInterrupt:
+	allOff(ledList)
+	exit(0)
