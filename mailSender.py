@@ -3,6 +3,7 @@ from email.mime.image import MIMEImage
 from email.mime.multipart import MIMEMultipart
 from keys import * # I keep my personal information in a separate file
 from datetime import datetime 
+import os.path
 
 def sendNewMail():
 	#define your personal information below or in a separate file as I did
@@ -19,11 +20,13 @@ def sendNewMail():
 	message["To"] = sendTo
 	message.premble = "alert"
 
-	fp = open(image,"rb")
-	image = MIMEImage(fp.read())
-	fp.close()
-	
-	message.attach(image)
+	# If camera won't work for any reason, send email without the image
+	if(os.path.isfile(image)):
+		fp = open(image,"rb")
+		image = MIMEImage(fp.read())
+		fp.close()
+		message.attach(image)
+
 
 	sendIt = smtplib.SMTP("smtp.gmail.com",587)
 	sendIt.ehlo()
