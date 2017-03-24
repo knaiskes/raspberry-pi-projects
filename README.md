@@ -14,7 +14,7 @@
 
 1. Python 3 
 
-2. gpiozero3
+
 
 Raspbian has installed by default Python 3 so you don't need to install it but you have to install gpiozero3, you can install it using apt-get as it is in raspbian's main  repository 
 
