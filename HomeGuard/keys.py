@@ -1,3 +1,3 @@
-user_email = ""
-passw = ""
+user_email = "test_email"
+passw = "testPass"
 sendTo = ""

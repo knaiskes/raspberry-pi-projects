@@ -1,24 +1,27 @@
 from mailSender import sendNewMail
-from os import system
+from subprocess import call
 from time import sleep
 from sys import exit
 import RPi.GPIO as GPIO
 
 GPIO.setmode(GPIO.BCM)
 
-GPIO.setup(4,GPIO.IN)
-#sensor = GPIO.input(4)
+sensorPin = 4
+GPIO.setup(sensorPin,GPIO.IN)
 
 print("Started")
 
 try:
 	while True:
-		sensor = GPIO.input(4)
+		sensor = GPIO.input(sensorPin)
 		if(sensor == 1):
-			# taking a screenshot and dropping 20 pixels
-			system("sudo fswebcam -r 1280x720 --no-banner -S 20 image.jpg")
+			try:
+				# taking a screenshot and dropping 20 pixels
+				call(["sudo fswebcam -r 1280x720 --no-banner -S 20 image.jpg"])
+			except OSError:
+				print("fswebcam is not installed")
 			sendNewMail()
 			print(15 * "-")
-			sleep(30) # half minute delay
+			sleep(30) # half a minute delay
 except KeyboardInterrupt:
 	exit(0)

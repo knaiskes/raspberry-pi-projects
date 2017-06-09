@@ -11,8 +11,12 @@
 
 - A camera 
 
-## Additional software you will need if you use a usb web camera 
+- A Gmail account 
 
--fswebcam
+## Dependencies 
 
-### How to execute project in crontab
+-Python 3 
+-pip 3
+-RPI.GPIO
+-fswebcam 
+
