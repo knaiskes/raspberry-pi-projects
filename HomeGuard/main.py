@@ -1,5 +1,5 @@
 from mailSender import sendNewMail
-from subprocess import call
+from subprocess import run
 from time import sleep
 from sys import exit
 import RPi.GPIO as GPIO
@@ -17,7 +17,7 @@ try:
 		if(sensor == 1):
 			try:
 				# taking a screenshot and dropping 20 pixels
-				call(["sudo fswebcam -r 1280x720 --no-banner -S 20 image.jpg"])
+				run("sudo fswebcam -r 1280x720 --no-banner -S 20 image.jpg",shell=True)
 			except OSError:
 				print("fswebcam is not installed")
 			sendNewMail()
