@@ -14,7 +14,6 @@ def sendNewMail():
 	#sendTo = ""
 	currentTime = datetime.now().time()
 	currentTime = currentTime.replace(microsecond = 0)
-	#sub = "New alarm"+"at:"+""+str(currentTime)
 	sub = "New alarm"
 	image = "image.jpg"
 	message = MIMEMultipart()
@@ -28,7 +27,6 @@ def sendNewMail():
 	if(os.path.isfile(image)):
 		fp = open(image,"rb")
 		image = MIMEImage(fp.read())
-		#bodyMsg = "New alarm at: "
 		fp.close()
 		message.attach(image)
 
