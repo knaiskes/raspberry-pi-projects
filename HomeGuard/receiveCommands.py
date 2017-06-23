@@ -14,6 +14,5 @@ def receiveEmail():
 	result,data = account.fetch(getMail,"(RFC822)")
 	decode_mail = data[0][1]
 	message = email.message_from_string(decode_mail.decode("utf-8"))
-	print(email.utils.parseaddr(message["From"]))
+	msg = email.message_from_string(decode_mail.decode("utf-8"))
 	print(message["Subject"])
-	
