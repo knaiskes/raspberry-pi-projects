@@ -19,7 +19,7 @@ try:
 				# taking a screenshot and dropping 20 pixels
 				run("sudo fswebcam -r 1280x720 --no-banner -S 20 image.jpg",shell=True)
 			except OSError:
-				print("fswebcam is not installed")
+				print("Could not start fswebcam")
 			sendNewMail()
 			print(15 * "-")
 			sleep(30) # half a minute delay
