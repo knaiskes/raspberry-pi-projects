@@ -17,7 +17,8 @@ try:
 		if(sensor == 1):
 			try:
 				# taking a screenshot and dropping 20 pixels
-				run("sudo fswebcam -r 1280x720 --no-banner -S 20 image.jpg",shell=True)
+				# add sudo if you are not int the video group
+				run("fswebcam -r 1280x720 --no-banner -S 20 image.jpg",shell=True)
 			except OSError:
 				print("Could not start fswebcam")
 			sendNewMail()
