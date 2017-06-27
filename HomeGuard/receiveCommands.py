@@ -4,7 +4,7 @@ from keys import *
 from subprocess import run
 
 # add commands here
-availableCommands = {"photo":"fswebcam -r 1280x720 --no-banner -S 20 image.jpg"} 
+availableCommands = {"photo":"sudo fswebcam -r 1280x720 --no-banner -S 20 image.jpg"} 
 
 def receiveEmail():
 	account = imaplib.IMAP4_SSL("imap.gmail.com")
