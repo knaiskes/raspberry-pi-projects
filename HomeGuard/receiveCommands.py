@@ -3,6 +3,7 @@ import email
 from keys import *
 from subprocess import run
 from mailSender import *
+from time import sleep
 
 # add commands here
 availableCommands = {"photo":"sudo fswebcam -r 1280x720 --no-banner -S 20 image.jpg"} 
@@ -20,14 +21,14 @@ def receiveEmail():
 	decode_mail = data[0][1]
 	message = email.message_from_string(decode_mail.decode("utf-8"))
 	msg = email.message_from_string(decode_mail.decode("utf-8"))
-	print(message["Subject"])
+	#print(message["Subject"])
 	if message["Subject"] in availableCommands:
 		#print(availableCommands[message["Subject"]])
-		try:
-			run(availableCommands[message["Subject"]],shell=True)
-			sendNewMail()
-		except OSError:
-			print("Command could not run")
-
-
-receiveEmail()
+		if message["Subject"] == "photo":
+			try:
+				run(availableCommands[message["Subject"]],shell=True)
+				print("------Done------")
+				sendNewMail()
+				sleep(90) 
+			except OSError:
+				print("Command could not run")

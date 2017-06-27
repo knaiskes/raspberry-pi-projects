@@ -2,6 +2,7 @@ from mailSender import sendNewMail
 from subprocess import run
 from time import sleep
 from sys import exit
+from receiveCommands import *
 import RPi.GPIO as GPIO
 
 GPIO.setmode(GPIO.BCM)
@@ -24,5 +25,7 @@ try:
 			sendNewMail()
 			print(15 * "-")
 			sleep(30) # half a minute delay
+		receiveEmail()
+
 except KeyboardInterrupt:
 	exit(0)
