@@ -2,6 +2,7 @@ import imaplib
 import email
 from keys import *
 from subprocess import run
+from mailSender import *
 
 # add commands here
 availableCommands = {"photo":"sudo fswebcam -r 1280x720 --no-banner -S 20 image.jpg"} 
@@ -24,5 +25,9 @@ def receiveEmail():
 		#print(availableCommands[message["Subject"]])
 		try:
 			run(availableCommands[message["Subject"]],shell=True)
+			sendNewMail()
 		except OSError:
 			print("Command could not run")
+
+
+receiveEmail()
