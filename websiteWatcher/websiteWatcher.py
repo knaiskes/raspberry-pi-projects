@@ -3,7 +3,7 @@
 # simple script to check if my website is up and running fine or if there is
 # any problem with it
 
-import urllib.request
+import requests
 import RPi.GPIO as GPIO
 from time import sleep
 
@@ -20,23 +20,20 @@ mySite = ""
 
 while(True):
 	try:
-
-		if(urllib.request.urlopen(mySite).getcode() == 200):
-			# site is up and running
-			GPIO.output(redLed,GPIO.LOW) 
+		request = requests.head(mySite)
+		if(request.status_code == 200):
+			# site is up and running fine
+			GPIO.output(redLed,GPIO.LOW)
 			GPIO.output(greenLed,GPIO.HIGH)
 
 		else:
 			# something wrong is going on
-			GPIO.output(greenLed,GPIO.LOW)
+			GPIO.output(greenLed,GPIO.LOW)		
 			GPIO.output(redLed,GPIO.HIGH)
+	
 		sleep(50)
 
 	except KeyboardInterrupt:
 		GPIO.output(greenLed,GPIO.LOW)
 		GPIO.output(redLed,GPIO.LOW)
 		exit(0)
-	
-
-
-
