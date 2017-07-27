@@ -5,6 +5,7 @@
 
 import urllib.request
 import RPi.GPIO as GPIO
+from time import sleep
 
 GPIO.setmode(GPIO.BCM)
 GPIO.setwarnings(False)
@@ -29,11 +30,13 @@ while(True):
 			# something wrong is going on
 			GPIO.output(greenLed,GPIO.LOW)
 			GPIO.output(redLed,GPIO.HIGH)
+		sleep(50)
 
 	except KeyboardInterrupt:
 		GPIO.output(greenLed,GPIO.LOW)
 		GPIO.output(redLed,GPIO.LOW)
 		exit(0)
+	
 
 
 
