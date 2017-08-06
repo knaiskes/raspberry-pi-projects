@@ -1,1 +1,1 @@
-Raspberry pi that I develop on my lazy time
+Raspberry pi projects that I develop on my lazy time
