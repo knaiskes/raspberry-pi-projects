@@ -1,0 +1,18 @@
+<!DOCTYPE html>
+<html>
+	<head><title> Login </title></head>
+
+	<body>
+		<center>
+			<form action="" method="post">
+				<input type="text" placeholder="Username" name="username" 
+				value="{{request.form.username }}">
+				<input type="password" placeholder="Password" 
+			       	name="password" value="{{request.form.password }}">
+				<input class="btn btn-default" type="submit" value="Login">
+			</form>
+			{% if error %}
+			<p class="error"><strong>Error:</strong><font color="red"> {{ error }} </font>
+			{% endif %}
+	</body>
+</html>
