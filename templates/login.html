@@ -1,8 +1,12 @@
 <!DOCTYPE html>
 <html>
-	<head><title> Login </title></head>
+	<head>
+		<link rel="stylesheet" type="text/css" href="/static/login.css">
+		<title> Login </title>
+	</head>
 
 	<body>
+		<div id="formPosition">
 		<center>
 			<form action="" method="post">
 				<input type="text" placeholder="Username" name="username" 
@@ -14,5 +18,6 @@
 			{% if error %}
 			<p class="error"><strong>Error:</strong><font color="red"> {{ error }} </font>
 			{% endif %}
+		</div>
 	</body>
 </html>

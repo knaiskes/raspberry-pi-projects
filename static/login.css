@@ -1,0 +1,37 @@
+body {
+	background: #303741;
+}
+
+#formPosition {
+	margin: 75px auto;
+	padding: 15px 50px;
+	height: 20px;
+	width: auto;
+}
+
+input[type=text], input[type=password] {
+	width: 100%;
+	margin: 8px 0;
+	display: inline-block;
+	border: 1px solid;
+	box-sizing: border-box;
+	font-size: 18px;
+}
+
+input[type=submit]{
+	background-color: #003366;
+	color: white;
+	padding: 14px 20px;
+	margin: 8px 0;
+	border: none;
+	cursor: pointer;
+	width: auto;
+	font-size: 17px;
+}
+
+form {
+	background-color: #75AB98;
+	border: 1px solid #75AB98;
+	font-size: 20px;
+}
+
