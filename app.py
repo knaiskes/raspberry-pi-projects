@@ -1,6 +1,8 @@
-from flask import Flask, render_template,redirect,request,url_for
+from flask import Flask, render_template,redirect,request,url_for,session
 
 app = Flask(__name__)
+
+app.secret_key = "my secret key"
 
 @app.route("/")
 def index():
@@ -14,8 +16,17 @@ def login():
 		if request.form["username"] != "kiriakos" or request.form["password"] != "test":
 			error = "Invalid login credentials"
 		else:
-			return redirect(url_for("index"))
+			session["logged_in"] = True
+			session["username"] = request.form["username"]
+			return redirect(url_for("dashboard"))
 	return render_template("login.html",error=error)
+
+@app.route("/dashboard")
+def dashboard():
+	if not session.get("logged_in"):
+		return redirect(url_for("login"))
+	else:
+		return render_template("dashboard.html")
 
 
 
