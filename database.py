@@ -28,3 +28,4 @@ def checkUser(name, password):
 		return True
 
 	db.close()
+

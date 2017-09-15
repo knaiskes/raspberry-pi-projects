@@ -1,5 +1,6 @@
 from flask import Flask, render_template,redirect,request,url_for,session
 from database import *
+
 app = Flask(__name__)
 
 app.secret_key = "my secret key"
@@ -13,7 +14,8 @@ def login():
 	error = None
 	if request.method == "POST":
 		# testing username and password
-		if request.form["username"] != "kiriakos" or request.form["password"] != "test":
+		#if request.form["username"] != "kiriakos" or request.form["password"] != "test":
+		if checkUser(request.form["username"],request.form["password"]) == False:
 			error = "Invalid login credentials"
 		else:
 			session["logged_in"] = True
