@@ -10,17 +10,24 @@ def createDB():
 	db.close()
 
 def addUser(name, password):
-	conn = sqlite3.connect(database)
-	db = conn.cursor()
-	db.execute("INSERT INTO users VALUES(?,?)",(name,password,))
-	conn.commit()
-	db.close()
+	if checkUser(name,None) == True:
+		print("user : {} already exists".format(name))
+	else:
+		conn = sqlite3.connect(database)
+		db = conn.cursor()
+		db.execute("INSERT INTO users VALUES(?,?)",(name,password,))
+		conn.commit()
+		db.close()
 
 
 def checkUser(name, password):
 	conn = sqlite3.connect(database)
 	db = conn.cursor()
-	db.execute("SELECT * FROM users WHERE name = ? AND password = ?",(name,password,))
+	if(password == None):
+		db.execute("SELECT * FROM users WHERE name = ?",(name,))
+	else:
+		db.execute("SELECT * FROM users WHERE name = ? AND password = ?",(name,password,))
+
 	exist = db.fetchone()
 	if exist is None:
 		return False
