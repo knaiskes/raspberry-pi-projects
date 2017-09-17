@@ -1,6 +1,24 @@
 import sqlite3
+import argparse
+from getpass import getpass
 
 database = "users.db"
+
+def main():
+	parser = argparse.ArgumentParser()
+
+	parser.add_argument("-a", "--add", action="store_true", 
+			help="Add new user to the database")
+	parser.add_argument("-r", "--remove", action="store_true",  
+			help="Remove a user from the database")
+	args = parser.parse_args()
+	if args.add:
+		name = input("Enter user's name: ")
+		print("Enter user's password: ")
+		passw = getpass()
+	elif args.remove:
+		user = input("Enter user's name: ")
+
 
 def createDB():
 	conn = sqlite3.connect(database)
@@ -35,4 +53,7 @@ def checkUser(name, password):
 		return True
 
 	db.close()
+
+if __name__ == "__main__":
+	main()
 
