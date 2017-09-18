@@ -29,7 +29,7 @@ def createDB():
 
 def addUser(name, password):
 	if checkUser(name,None) == True:
-		print("user : {} already exists".format(name))
+		print("user: {} already exists".format(name))
 	else:
 		conn = sqlite3.connect(database)
 		db = conn.cursor()
@@ -37,6 +37,15 @@ def addUser(name, password):
 		conn.commit()
 		db.close()
 
+def delUser(name):
+	if checkUser(name,None) == True:
+		conn = sqlite3.connect(database)
+		db = conn.cursor()
+		db.execute("DELETE FROM users VALUES(?)",(name,))
+		conn.commit()
+		db.close()
+	else:
+		print("user: {} does not exist".format(name))
 
 def checkUser(name, password):
 	conn = sqlite3.connect(database)
