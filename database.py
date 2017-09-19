@@ -1,8 +1,10 @@
 import sqlite3
 import argparse
 from getpass import getpass
+import os.path
 
 database = "users.db"
+
 
 def main():
 	parser = argparse.ArgumentParser()
@@ -16,8 +18,10 @@ def main():
 		name = input("Enter user's name: ")
 		print("Enter user's password: ")
 		passw = getpass()
+		addUser(name, passw)
 	elif args.remove:
 		user = input("Enter user's name: ")
+		delUser(user)
 
 
 def createDB():
@@ -41,7 +45,7 @@ def delUser(name):
 	if checkUser(name,None) == True:
 		conn = sqlite3.connect(database)
 		db = conn.cursor()
-		db.execute("DELETE FROM users VALUES(?)",(name,))
+		db.execute("DELETE FROM users WHERE name=?",(name,))
 		conn.commit()
 		db.close()
 	else:
@@ -63,6 +67,8 @@ def checkUser(name, password):
 
 	db.close()
 
+if os.path.exists(database) == False:
+	createDB()
+
 if __name__ == "__main__":
 	main()
-
