@@ -13,6 +13,8 @@ def main():
 			help="Add new user to the database")
 	parser.add_argument("-r", "--remove", action="store_true",  
 			help="Remove a user from the database")
+	parser.add_argument("-u", "--users", action="store_true",
+			help="List all registered users")
 	args = parser.parse_args()
 	if args.add:
 		name = input("Enter user's name: ")
@@ -22,12 +24,16 @@ def main():
 	elif args.remove:
 		user = input("Enter user's name: ")
 		delUser(user)
+	elif args.users:
+		listUsers()
 
 
 def createDB():
 	conn = sqlite3.connect(database)
 	db = conn.cursor()
-	db.execute("CREATE TABLE IF NOT EXISTS users (name text, password text)")
+	db.execute("""CREATE TABLE IF NOT EXISTS users 
+			(id INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, 
+			name TEXT NOT NULL,password Text NOT NULL)""")
 	conn.commit()
 	db.close()
 
@@ -37,7 +43,7 @@ def addUser(name, password):
 	else:
 		conn = sqlite3.connect(database)
 		db = conn.cursor()
-		db.execute("INSERT INTO users VALUES(?,?)",(name,password,))
+		db.execute("INSERT INTO users VALUES(?,?,?)",(None,name,password,))
 		conn.commit()
 		db.close()
 
@@ -66,6 +72,17 @@ def checkUser(name, password):
 		return True
 
 	db.close()
+
+def listUsers():
+	conn = sqlite3.connect(database)
+	db = conn.cursor()
+	db.execute("SELECT name FROM users")
+	users = db.fetchall()
+	users = " ".join(map(str,(users)))
+	print("Users: ",users)
+	conn.commit()
+	conn.close()
+
 
 if os.path.exists(database) == False:
 	createDB()
