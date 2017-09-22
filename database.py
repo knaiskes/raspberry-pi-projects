@@ -2,6 +2,7 @@ import sqlite3
 import argparse
 from getpass import getpass
 import os.path
+import hashlib
 
 database = "users.db"
 
@@ -37,10 +38,17 @@ def createDB():
 	conn.commit()
 	db.close()
 
+def encryptPass(password):
+	password = hashlib.sha256()
+	password.update(repr(password).encode("utf-8"))
+
+	return password.hexdigest()
+
 def addUser(name, password):
 	if checkUser(name,None) == True:
 		print("user: {} already exists".format(name))
 	else:
+		password = encryptPass(password)
 		conn = sqlite3.connect(database)
 		db = conn.cursor()
 		db.execute("INSERT INTO users VALUES(?,?,?)",(None,name,password,))
@@ -63,6 +71,7 @@ def checkUser(name, password):
 	if(password == None):
 		db.execute("SELECT * FROM users WHERE name = ?",(name,))
 	else:
+		password = encryptPass(password)
 		db.execute("SELECT * FROM users WHERE name = ? AND password = ?",(name,password,))
 
 	exist = db.fetchone()
