@@ -13,8 +13,6 @@ def index():
 def login():
 	error = None
 	if request.method == "POST":
-		# testing username and password
-		#if request.form["username"] != "kiriakos" or request.form["password"] != "test":
 		if checkUser(request.form["username"],request.form["password"]) == False:
 			error = "Invalid login credentials"
 		else:
