@@ -38,11 +38,11 @@ def createDB():
 	conn.commit()
 	db.close()
 
-def encryptPass(password):
+def encryptPass(encrypt):
 	password = hashlib.sha256()
-	password.update(repr(password).encode("utf-8"))
+	password = hashlib.sha256(encrypt.encode("utf8")).hexdigest()
 
-	return password.hexdigest()
+	return password
 
 def addUser(name, password):
 	if checkUser(name,None) == True:
