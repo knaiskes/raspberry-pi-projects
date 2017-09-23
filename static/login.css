@@ -3,7 +3,6 @@ body { background: #21263A;
 
 #formPosition {
 	margin: 75px auto;
-	padding: 50px  500px;
 	width: auto;
 }
 
@@ -30,6 +29,5 @@ form {
 	background-color: #0F1A30;
 	border: 1px solid #263631;
 	font-size: 20px;
-	position: absolute;
 }
 
