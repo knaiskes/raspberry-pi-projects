@@ -9,12 +9,20 @@
 		<div id="menu">
 			<ul>
 				<li><a href="#">Lights</a></li>
-				<li><a href="#">Sensors</a></li>
+				<li><a href="dashboard">Dashboard</a></li>
 				</u>
 		</div>
 	</head>
 
 	<body>
+		<form action="/lamp" method="POST">
+		<div class="commandBtn">
+			<h4>Lamp</h4>
+			<input type="submit" name="lamp" value="ON">
+			<input type="submit" name="lamp" value="OFF">
+		</div>
+		</form>
+
 	</body>
 	
 </html>

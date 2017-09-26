@@ -28,6 +28,18 @@ def dashboard():
 	else:
 		return render_template("dashboard.html")
 
+@app.route("/lamp", methods=["POST"])
+def led_hadler():
+	if request.form["lamp"] == "ON":
+		# TODO: add function call to relay
+		print("light on")
+	elif request.form["lamp"] == "OFF":
+		# TODO: add function call to relay
+		print("light off")
+	else:
+		print("something wrong")
+	return render_template("dashboard.html")
+
 
 
 if __name__ == "__main__":
