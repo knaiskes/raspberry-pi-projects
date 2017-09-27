@@ -1,5 +1,8 @@
 from flask import Flask, render_template,redirect,request,url_for,session
 from database import *
+import sys
+sys.path.insert(0, "code/relay")
+from relay import *
 
 app = Flask(__name__)
 
@@ -32,9 +35,11 @@ def dashboard():
 def led_hadler():
 	if request.form["lamp"] == "ON":
 		# TODO: add function call to relay
+		relayOn()
 		print("light on")
 	elif request.form["lamp"] == "OFF":
 		# TODO: add function call to relay
+		relayOff()
 		print("light off")
 	else:
 		print("something wrong")
