@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta name="viewport" content="width=device-width, inital-scale=1.0">
+		<link rel="stylesheet" type="text/css" href="/static/login.css">
+		<title> Login </title>
+	</head>
+
+	<body>
+		<div id="formPosition">
+		<center>
+			<form action="" method="post">
+				<p>
+				<input type="text" placeholder="Username" name="username" 
+				value="{{request.form.username }}">
+				</p>
+				<p>
+				<input type="password" placeholder="Password" 
+			       	name="password" value="{{request.form.password }}">
+				<input class="btn btn-default" type="submit" value="Login">
+				</p>
+			</form>
+			{% if error %}
+			<p class="error"><strong>Error:</strong><font color="red"> {{ error }} </font>
+			{% endif %}
+		</div>
+	</body>
+</html>
